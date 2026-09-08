@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Patient Appointments{% endblock %}</title>
+    <style>
+        body { font-family: sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+        nav a { margin-right: 1rem; }
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        th, td { text-align: left; padding: 0.5rem; border-bottom: 1px solid #ddd; }
+        .messages { list-style: none; padding: 0; }
+        .messages li { padding: 0.5rem; background: #eef7ee; margin-bottom: 0.5rem; }
+        .status-cancelled { color: #a00; }
+        .status-completed { color: #666; }
+        form p { margin: 0.75rem 0; }
+        .actions a, .actions button { margin-right: 0.5rem; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'appointments:appointment_list' %}">Appointments</a>
+        <a href="{% url 'appointments:appointment_create' %}">New Appointment</a>
+        <a href="{% url 'appointments:patient_list' %}">Patients</a>
+        <a href="{% url 'appointments:patient_create' %}">New Patient</a>
+    </nav>
+    <hr>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% block content %}{% endblock %}
+</body>
+</html>

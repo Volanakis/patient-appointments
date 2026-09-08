@@ -1,0 +1,12 @@
+{% extends 'appointments/base.html' %}
+
+{% block title %}{% if appointment %}Edit Appointment{% else %}New Appointment{% endif %}{% endblock %}
+
+{% block content %}
+<h1>{% if appointment %}Edit Appointment{% else %}New Appointment{% endif %}</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+{% endblock %}
